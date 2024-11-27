@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="cs">0
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endux.eu</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+        function includeHTML() {
+            document.querySelectorAll('[data-include]').forEach(el => {
+                const file = el.getAttribute('data-include');
+                fetch(file)
+                    .then(response => {
+                        if (response.ok) return response.text();
+                        throw new Error('Soubor nenalezen: ' + file);
+                    })
+                    .then(html => {
+                        el.innerHTML = html;
+
+                        // Najde a spustí všechny <script> tagy
+                        const scripts = el.querySelectorAll('script');
+                        scripts.forEach(script => {
+                            const newScript = document.createElement('script');
+                            if (script.src) {
+                                // Pokud je script externí
+                                newScript.src = script.src;
+                                newScript.async = true; // Zajistí rychlé načtení
+                            } else {
+                                // Pokud je script inline
+                                newScript.textContent = script.textContent;
+                            }
+                            document.body.appendChild(newScript); // Přidá script do DOM
+                            script.remove(); // Odstraní původní script
+                        });
+
+                        // Najde a spustí všechny <link> tagy pro CSS
+                        const links = el.querySelectorAll('link[rel="stylesheet"]');
+                        links.forEach(link => {
+                            const newLink = document.createElement('link');
+                            newLink.rel = 'stylesheet';
+                            newLink.href = link.href;
+                            document.head.appendChild(newLink); // Přidá link do DOM
+                            link.remove(); // Odstraní původní link
+                        });
+                    })
+                    .catch(err => console.error(err));
+            });
+        }
+        window.onload = includeHTML;
+    </script>
+</head>
+<body>
+    <div data-include="../hamburger.html"></div>
+</body>
+</html>

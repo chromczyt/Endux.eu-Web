@@ -1,0 +1,170 @@
+/* styles.css */
+
+/* Tělo stránky */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #36393f;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden; /* Skryjeme přetečení během načítání */
+    transition: padding-top 0.5s, padding-bottom 0.5s; /* Plynulý přechod pro padding */
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #36393f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loader::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border: 5px solid #7289da;
+    border-top: 5px solid #99aab5;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+header {
+    background-color: rgba(44, 47, 51, 0.555);
+    backdrop-filter: blur(20px);
+    padding: 10px 20px;
+    margin: 0 auto; /* Vycentrujeme header */
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Zajistíme, aby byl header vycentrovaný i po bocích */
+    width: auto;
+    border-radius: 10px;
+    z-index: 1000;
+    transition: background-color 0.5s, backdrop-filter 0.5s, top 0.5s; /* Plynulý přechod pro barvu, rozostření a pozici */
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 40px; /* Zvýšíme mezeru mezi logo a navigaci */
+}
+
+header .separator {
+    color: #7289da;
+    margin-right: 40px; /* Zvýšíme mezeru mezi separator a navigaci */
+}
+
+header .nav {
+    display: flex;
+    gap: 20px; /* Zvýšíme mezeru mezi jednotlivými odkazy v navigaci */
+}
+
+header.hide {
+    top: -60px; /* Skryjeme header zobrazením mimo obrazovku */
+}
+
+/* Odkazy v navigaci */
+nav a {
+    color: #7289da;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+header nav a[href="index.html"] {
+    color: #ffffff; /* Zvýrazněná barva textu */
+    font-weight: bold; /* Zvýrazněný text */
+    pointer-events: none; /* Deaktivace kliknutí */
+    cursor: default; /* Změna kurzoru na default */
+}
+
+/* Obsah stránky */
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px 60px;
+    padding-top: 80px; /* Přidáme odsazení pro hlavní obsah kvůli pevné hlavičce */
+}
+
+/* Sekce údržby */
+.maintenance {
+    text-align: center;
+}
+
+.maintenance h1 {
+    font-size: 48px;
+    color: #7289da;
+    margin-bottom: 20px;
+}
+
+.maintenance p {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+/* Tlačítko na Discord */
+.discord-button {
+    background-color: #7289da;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.discord-button:hover {
+    background-color: #5b6eae;
+}
+
+/* Patička */
+footer {
+    background-color: rgba(44, 47, 51, 0.555);
+    backdrop-filter: blur(20px);
+    padding: 5px 20px;
+    margin: 0 auto;
+    text-align: center;
+    position: fixed;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    border-radius: 10px;
+    transition: background-color 0.5s, backdrop-filter 0.5s, bottom 0.5s;
+}
+
+footer.show {
+    bottom: 10px;
+}
+
+footer a {
+    color: #7289da;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,6 @@
+/logs
+/nginx
+/php-fpm
+/php-fpm.log
+/start.sh
+/tmp

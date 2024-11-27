@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endux.eu</title>
+<link rel="stylesheet" href="styles.css" />
+     <script>
+function includeHTML() {
+    document.querySelectorAll('[data-include]').forEach(el => {
+        const file = el.getAttribute('data-include');
+        fetch(file)
+            .then(response => {
+                if (response.ok) return response.text();
+                throw new Error('Soubor nenalezen: ' + file);
+            })
+            .then(html => {
+                el.innerHTML = html;
+
+                // Najde a spustí všechny <script> tagy
+                const scripts = el.querySelectorAll('script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        // Pokud je script externí
+                        newScript.src = script.src;
+                        newScript.async = true; // Zajistí rychlé načtení
+                    } else {
+                        // Pokud je script inline
+                        newScript.textContent = script.textContent;
+                    }
+                    document.body.appendChild(newScript); // Přidá script do DOM
+                });
+            })
+            .catch(err => console.error(err));
+    });
+}
+window.onload = includeHTML;
+  </script>
+  </head>
+    <body>
+      <div data-include="hamburger.html"></div>
+    <div class="hero">
+        <h2>Vítej na nejlepším Minecraft serveru v roce 2024!</h2>
+    </div>
+    <section class="info">
+        <h2 class="server-info">Informace o serveru</h2>
+        <div>&nbsp;</div>
+        <p>Připoj se k nám a zažij nezapomenutelné dobrodružství!</p>
+        <p>Adresa: <strong class="server-info">mc.endux.eu</strong></p>
+        <a href="https://discord.gg/63h36bRNNk" class="btn" target="_blank">Discord</a>
+    </section>
+    <section class="stats">
+        <h2 class="server-info">Statistiky</h2>
+        <div>&nbsp;</div>
+        <div class="cards">
+            <div class="card">
+                <h3>Hráči online</h3>
+                <p id="players-online">Načítám...</p>
+            </div>
+            <div class="card">
+                <h3>Verze serveru</h3>
+                <p>1.20.1</p>
+            </div>
+            <div class="card">
+                <h3>Mapa světa</h3>
+                <p><a href="https://example.com/map" target="_blank">Prohlédni si mapu</a></p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p><span class="server-info">&copy; Endux.eu</span> 2024</p>
+        <p>Všechna práva vyhrazena.</p>
+    </footer>
+    <script>
+        // Dynamické načítání dat
+        fetch('https://api.example.com/server-status')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('players-online').textContent = data.playersOnline + " hráčů";
+            })
+            .catch(() => {
+                document.getElementById('players-online').textContent = "Nelze načíst data";
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+:root {
+    --primary-color: rgb(57, 57, 57) !important;
+    --secondary-color: rgb(255, 49, 49);
+    --background-color: rgb(57, 57, 57) !important;
+    --text-color: #f3f3f3;
+    --hover-color: rgb(255, 110, 49);
+    --transition-speed: 0.3s;
+    --text-color-second: rgb(255, 49, 49);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--background-color) !important;
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background: var(--primary-color) !important;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2rem;
+    transition: color var(--transition-speed);
+}
+
+nav a:hover {
+    color: var(--hover-color);
+}
+
+.info{
+    background: var(--background-color) !important;
+    color: var(--text-color);
+}
+
+.stats{
+    background: var(--background-color) !important;
+    color: var(--text-color);
+}
+
+.server-info{
+    color: var(--text-color-second);
+}
+
+.hero {
+    width: 100%;
+    height: 50vh;
+    background: linear-gradient(
+            rgb(60, 60, 60, 0.03), 
+            rgb(57, 57, 57, 1)
+        ),
+        url('https://cdn.discordapp.com/attachments/1126248451085181028/1129516989984022589/E.png?ex=6748306b&is=6746deeb&hm=975ae301f7d87856bfe9b513a32a6475b7d4866b35a0896829757090a416fa50&') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+section {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: rgb(50, 50, 50) !important;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+}
+
+.card h3 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+footer {
+    background: var(--primary-color);
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: auto;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
+}
+
+footer p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.btn {
+    display: inline-block;
+    background: var(--secondary-color) !important;
+    color: var(--text-color) !important;
+    padding: 10px 20px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background var(--transition-speed);
+}
+
+.btn:hover {
+    background: var(--hover-color) !important;
+}
